@@ -79,6 +79,7 @@
     <Compile Include="Attributes\NotifyPropertyChangedAttribute.cs" />
     <Compile Include="BeforeAfterCheckFieldTests.cs" />
     <Compile Include="CheckForEqualityConfigTests.cs" />
+    <Compile Include="NotifyDependenciesConfigTests.cs" />
     <Compile Include="TypeFilterTests.cs" />
     <Compile Include="EventInvokerNamesConfigTests.cs" />
     <Compile Include="MappingFinder\MappingFinderSingleBackingReadonlyFieldGet.cs" />

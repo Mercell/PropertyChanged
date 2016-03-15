@@ -928,6 +928,28 @@ public abstract class BaseTaskTests
     }
 
     [Test]
+    public void WithDoNotNotifyDependenciesWholeClass()
+    {
+        var instance = assembly.GetInstance("ClassWithDoNotNotifyDependenciesWholeClass");
+
+        instance.FirstName = "FirstName";
+        instance.LastName = "LastName";
+
+        Assert.IsFalse(instance.FullNameCalled, "FullName was called!");
+    }
+
+    [Test]
+    public void WithDoNotNotifyDependencies()
+    {
+        var instance = assembly.GetInstance("ClassWithDoNotNotifyDependencies");
+
+        instance.FirstName = "FirstName";
+        instance.LastName = "LastName";
+
+        Assert.IsFalse(instance.FullNameCalled, "FullName was called!");
+    }
+
+    [Test]
     public void WithPropertyChangedArgImplementation()
     {
         var instance = assembly.GetInstance("ClassWithPropertyChangedArgImplementation");
