@@ -62,6 +62,8 @@
     <Compile Include="ClassThatIsNotSealed.cs" />
     <Compile Include="ClassThatIsSealed.cs" />
     <Compile Include="ClassWithBeforeAfterValueCheckFieldImplementation.cs" />
+    <Compile Include="ClassWithDoNotNotifyDependencies.cs" />
+    <Compile Include="ClassWithDoNotNotifyDependenciesWholeClass.cs" />
     <Compile Include="ClassWithOnChangedAbstract.cs" />
     <Compile Include="ClassWithBeforeAfterAndSimpleImplementation.cs" />
     <Compile Include="ClassWithBeforeAfterImplementation.cs" />

@@ -23,6 +23,7 @@ public partial class ModuleWeaver
         ResolveOnPropertyNameChangedConfig();
         ResolveCheckForEqualityConfig();
         ResolveBeforeAfterCheckFieldConfig();
+        ResolveNotifyDependenciesConfig();
         ResolveEventInvokerName();
         FindCoreReferences();
         FindInterceptor();

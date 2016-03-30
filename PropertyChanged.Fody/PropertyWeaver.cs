@@ -56,9 +56,12 @@ public class PropertyWeaver
         index = AddIsChangedSetterCall(index);
         var propertyDefinitions = propertyData.AlsoNotifyFor.Distinct();
 
-        foreach (PropertyDefinition propertyDefinition in propertyDefinitions)
+        if (NotifyDependencies())
         {
-            index	= AddEventInvokeCall(index, propertyDefinition, null);
+            foreach (PropertyDefinition propertyDefinition in propertyDefinitions)
+            {
+              index = AddEventInvokeCall(index, propertyDefinition, null);
+            }
         }
         AddEventInvokeCall(index, propertyData.PropertyDefinition, propertyData.BackingFieldReference);
     }
@@ -333,5 +336,17 @@ public class PropertyWeaver
         var attribute = "PropertyChanged.BeforeAfterValueCheckFieldAttribute";
 
         return typeNode.TypeDefinition.GetAllCustomAttributes().ContainsAttribute(attribute) || propertyData.PropertyDefinition.CustomAttributes.ContainsAttribute(attribute);
+    }
+
+    bool NotifyDependencies()
+    {
+        if (!moduleWeaver.NotifyDependencies)
+        {
+          return false;
+        }
+
+        var attribute = "PropertyChanged.DoNotNotifyDependenciesAttribute";
+
+        return !(typeNode.TypeDefinition.GetAllCustomAttributes().ContainsAttribute(attribute) || propertyData.PropertyDefinition.CustomAttributes.ContainsAttribute(attribute));
     }
 }
