@@ -217,7 +217,9 @@ public class PropertyWeaver
         var afterVariable = new VariableDefinition(typeSystem.Object);
         setMethodBody.Variables.Add(afterVariable);
 
-        index = InsertVariableAssignmentFromCurrentValue(index, property, afterVariable, fieldReference);
+        FieldReference fieldReferenceResolved = fieldReference?.Resolve()?.GetGeneric();
+
+        index = InsertVariableAssignmentFromCurrentValue(index, property, afterVariable, fieldReferenceResolved);
 
         index = instructions.Insert(index,
             Instruction.Create(OpCodes.Ldarg_0),
@@ -227,7 +229,7 @@ public class PropertyWeaver
             CallEventInvoker()
             );
 
-        return AddBeforeVariableAssignment(index, property, beforeVariable, fieldReference);
+        return AddBeforeVariableAssignment(index, property, beforeVariable, fieldReferenceResolved);
     }
 
     int AddSimpleOnChangedCall(int index, MethodReference methodReference)
